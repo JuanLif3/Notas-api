@@ -1,4 +1,12 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateNotaDto } from './create-nota.dto';
+import { PartialType, PickType } from '@nestjs/mapped-types';
+import { Nota } from '../nota.entity';
 
-export class UpdateNotaDto extends PartialType(CreateNotaDto) {}
+const UpdateNotaBase = PickType(Nota, [
+  'titulo',
+  'contenido',
+  'status',
+  'prioridad',
+  'dueDate',
+]);
+
+export class UpdateNotaDto extends PartialType(UpdateNotaBase) {}

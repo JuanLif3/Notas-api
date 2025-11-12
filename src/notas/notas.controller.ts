@@ -8,6 +8,7 @@ import {
   Delete,
   ParseIntPipe,
   HttpCode,
+  Query,
 } from '@nestjs/common';
 import { NotasService } from './notas.service';
 import { CreateNotaDto } from './dto/create-nota.dto';
@@ -48,5 +49,10 @@ export class NotasController {
   @HttpCode(204)
   async delete(@Param('id', ParseIntPipe) id: number) {
     await this.notasService.delete(id);
+  }
+
+  @Get('por-fecha')
+  async findPorFecha(@Query('fecha') fecha: string) {
+    return await this.notasService.findPorFecha(fecha);
   }
 }

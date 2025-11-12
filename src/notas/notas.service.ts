@@ -47,4 +47,12 @@ export class NotasService {
     await this.findOne(id);
     await this.notasRepository.delete(id);
   }
+
+  async findPorFecha(fecha: string): Promise<Nota[]> {
+    return await this.notasRepository.find({
+      where: {
+        dueDate: new Date(fecha),
+      },
+    });
+  }
 }
